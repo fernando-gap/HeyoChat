@@ -1,0 +1,16 @@
+package shared.communication;
+
+public enum Action {
+    SEND_USER2USER,
+    SEND_USER2GROUP,
+
+    GET_USER_MESSAGES,
+    GET_GROUP_MESSAGES,
+    GET_ALL_USER_MESSAGES,
+    GET_ALL_GROUP_MESSAGES,
+    GET_NEW_MESSAGES,
+
+    CREATE_ACCOUNT,
+    LOGIN_IN,
+    NONE
+}

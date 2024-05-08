@@ -1,0 +1,9 @@
+services:
+  db:
+    image: mysql
+    restart: always
+    ports: 
+      - 4000:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: "app1234"
+      MYSQL_DATABASE: "heyochat"
