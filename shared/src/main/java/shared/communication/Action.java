@@ -4,6 +4,8 @@ public enum Action {
     SEND_USER2USER,
     SEND_USER2GROUP,
 
+    ADD_USER_LIST,
+
     GET_USER_MESSAGES,
     GET_GROUP_MESSAGES,
     GET_ALL_USER_MESSAGES,
@@ -11,6 +13,6 @@ public enum Action {
     GET_NEW_MESSAGES,
 
     CREATE_ACCOUNT,
-    LOGIN_IN,
+    SIGN_IN,
     NONE
 }

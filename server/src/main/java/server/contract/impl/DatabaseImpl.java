@@ -1,8 +1,10 @@
 package server.contract.impl;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -21,9 +23,13 @@ public class DatabaseImpl implements Database {
     }
 
     @Override
-    public void saveMessage(Message[] message) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'saveMessage'");
+    public void saveMessage(Message message, String senderName, String receiverName) throws SQLException {
+        String sql = "insert into UserMessage (senderID, receiverID, message) values (?, ?, ?)";
+        PreparedStatement s = connection.prepareStatement(sql);
+        s.setString(1, senderName);
+        s.setString(2, receiverName);
+        s.setString(3, message.getMessage());
+        s.executeUpdate();
     }
 
     @Override
@@ -48,9 +54,20 @@ public class DatabaseImpl implements Database {
     }
 
     @Override
-    public User getUser(String name) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getUser'");
+    public User getUser(String name) throws SQLException {
+        String sql = "select * from User where userName = ?";
+        PreparedStatement s = connection.prepareStatement(sql);
+        s.setString(1, name);
+        ResultSet result = s.executeQuery();
+
+        while (result.next()) {
+            if (result.getString("userName") == null) {
+                return null;
+            }
+
+            return new User(result.getInt("userID"), name, result.getString("userPassword"));
+        }
+        return null;
     }
 
     @Override
@@ -97,14 +114,24 @@ public class DatabaseImpl implements Database {
                     "userPassword VARCHAR(50) NOT NULL," +
                     "createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP" +
                     ")";
-            
+
+            String tableUserMessage = "CREATE TABLE IF NOT EXISTS UserMessage("
+                    + "messageID INT PRIMARY KEY AUTO_INCREMENT, "
+                    + "senderID INT NOT NULL, "
+                    + "receiverID INT NOT NULL, "
+                    + "message VARCHAR(500) NOT NULL, "
+                    + "createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP, "
+                    + "FOREIGN KEY (senderID) REFERENCES User(userID), "
+                    + "FOREIGN KEY (receiverID) REFERENCES User(userID)"
+                    + ");";
+
             s.executeUpdate(tableUser);
+            s.executeUpdate(tableUserMessage);
             System.out.println("Creation of Tables Executed");
 
         } catch (SQLException e) {
             System.err.println(e);
+            System.exit(1);
         }
-
-
     }
 }

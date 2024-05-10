@@ -7,14 +7,14 @@ import shared.client.Message;
 import shared.client.User;
 
 public interface Database {
-    void saveMessage(Message[] message);
+    void saveMessage(Message message, String senderName, String receiverName) throws SQLException;
     void saveUserGroup(long userID, long groupID);
 
     void createGroup(String name);
     void createUser(String name, String password) throws SQLException;
 
 
-    User getUser(String name);
+    User getUser(String name) throws SQLException;
     Group getGroup(String name);
     Group[] getAllUserGroup(long userID);
 

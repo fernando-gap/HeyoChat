@@ -1,8 +1,12 @@
 package server.contract;
 
-public interface Protocol<Sender, Receiver, Socket> {
-    Sender receive();
-    void send(Receiver client);
-    Socket getSocket(String name);
-    Socket addSocket(String name);
+import java.nio.channels.ServerSocketChannel;
+import java.util.concurrent.ConcurrentLinkedDeque;
+
+public interface Protocol<Connection> extends Runnable {
+    public void stop();
+    public void setReadyDeque(ConcurrentLinkedDeque<Connection> readyDeque);
+    public void setServer(ServerSocketChannel server);
+    public Connection getConnection(String name);
+    public void cacheConnection(String name, Connection connection);
 }

@@ -3,37 +3,46 @@ package shared.client;
 import java.io.Serializable;
 
 public class User implements Customer, Serializable {
-   private long id;
-   private String name;
-   private String password;
-   private static CustomerType type = CustomerType.GROUP;
+    private long id;
+    private String name;
+    private String password;
+    private static CustomerType type = CustomerType.GROUP;
 
-   public User(String name, String password) {
+    public User(String name, String password) {
         this.name = name;
         this.password = password;
-   }
+    }
 
-   public User(long id, String name) {
+    public User(long id, String name) {
         this.id = id;
         this.name = name;
-   }
+    }
 
-   @Override
-   public long getID() {
-       return id;
-   }
+    public User(long id, String name, String password) {
+        this.id = id;
+        this.name = name;
+        this.password = password;
+    }
 
-   @Override
-   public CustomerType getType() {
-       return type;
-   }
+    public void setPasswordNull() {
+        this.password = null;
+    }
 
-   public String getName() {
-       return name;
-   }
+    @Override
+    public long getID() {
+        return id;
+    }
 
-   public String getPassword() {
-       return password;
-   }
+    @Override
+    public CustomerType getType() {
+        return type;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getPassword() {
+        return password;
+    }
 }
-

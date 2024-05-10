@@ -1,24 +1,28 @@
 package shared.client;
 
-public class Message {
+import java.io.Serializable;
+
+public class Message implements Serializable {
     private String message;
-    private String creationDate;
     private String senderName;
     private String receiverName;
+    private long createdAt;
 
-    public Message(String message, String receiverName, String senderName, String creationDate) {
+    public Message(String message) {
         this.message = message;
-        this.receiverName = receiverName;
-        this.senderName = senderName;
-        this.creationDate = creationDate;
+    }
+
+    public Message(String message, long timestamp) {
+        this.message = message;
+        createdAt = timestamp;
     }
 
     public String getMessage() {
         return message;
     }
 
-    public String getCreationDate() {
-        return creationDate;
+    public long getCreatedAt() {
+        return createdAt;
     }
 
     public String getReceiverName() {

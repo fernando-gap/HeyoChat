@@ -21,6 +21,10 @@ public abstract class Client implements Serializable {
     }
 
     public Response getResponse() {
+        return getResponseFromAction();
+    }
+
+    public final Response getResponseFromAction() {
         switch (action) {
             case SEND_USER2USER:
             case SEND_USER2GROUP:
@@ -30,10 +34,12 @@ public abstract class Client implements Serializable {
             case GET_ALL_USER_MESSAGES:
             case GET_ALL_GROUP_MESSAGES:
                 return Response.MESSAGE;
-
+            
+            case ADD_USER_LIST:
+                return Response.USERNAME;
 
             case CREATE_ACCOUNT:
-            case LOGIN_IN:
+            case SIGN_IN:
                 return Response.STATUS;
 
             case NONE:

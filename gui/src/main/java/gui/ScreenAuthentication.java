@@ -8,6 +8,8 @@ import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 
+import javax.sound.midi.SysexMessage;
+
 import shared.client.User;
 import shared.communication.Action;
 import shared.communication.Client;
@@ -18,7 +20,6 @@ import shared.communication.Sender;
  * @author god
  */
 public class ScreenAuthentication extends javax.swing.JPanel {
-
     /**
      * Creates new form Authentication
      */
@@ -50,8 +51,12 @@ public class ScreenAuthentication extends javax.swing.JPanel {
         ButtonSignUp = new javax.swing.JButton();
         RepeatPasswordSignUp = new javax.swing.JPasswordField();
         LabelSignUpRepeatPassword = new javax.swing.JLabel();
+        errorLabel = new javax.swing.JLabel();
 
-        TextFieldSignInName.setText("jTextField1");
+        setPreferredSize(new java.awt.Dimension(1024, 768));
+
+        jPanel1.setPreferredSize(new java.awt.Dimension(1024, 768));
+
         TextFieldSignInName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 TextFieldSignInNameActionPerformed(evt);
@@ -60,7 +65,6 @@ public class ScreenAuthentication extends javax.swing.JPanel {
 
         LabelSignInName.setText("Nome");
 
-        PasswordSignIn.setText("jPasswordField1");
         PasswordSignIn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 PasswordSignInActionPerformed(evt);
@@ -80,24 +84,23 @@ public class ScreenAuthentication extends javax.swing.JPanel {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(94, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(ButtonSignIn, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(247, 247, 247)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(ButtonSignIn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(LabelSignInName, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(LabelSignInPassword, javax.swing.GroupLayout.Alignment.TRAILING))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(PasswordSignIn, javax.swing.GroupLayout.DEFAULT_SIZE, 179, Short.MAX_VALUE)
-                            .addComponent(TextFieldSignInName))))
-                .addGap(71, 71, 71))
+                            .addComponent(PasswordSignIn, javax.swing.GroupLayout.DEFAULT_SIZE, 475, Short.MAX_VALUE)
+                            .addComponent(TextFieldSignInName)))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(69, 69, 69)
+                .addGap(262, 262, 262)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(TextFieldSignInName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(LabelSignInName))
@@ -107,12 +110,11 @@ public class ScreenAuthentication extends javax.swing.JPanel {
                     .addComponent(LabelSignInPassword))
                 .addGap(18, 18, 18)
                 .addComponent(ButtonSignIn, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(80, Short.MAX_VALUE))
+                .addContainerGap(355, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Sign In", jPanel1);
 
-        TextFieldSignUpName.setText("jTextField1");
         TextFieldSignUpName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 TextFieldSignUpNameActionPerformed(evt);
@@ -121,7 +123,6 @@ public class ScreenAuthentication extends javax.swing.JPanel {
 
         LabelSignUpName.setText("Nome");
 
-        PasswordSignUp.setText("jPasswordField1");
         PasswordSignUp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 PasswordSignUpActionPerformed(evt);
@@ -137,7 +138,6 @@ public class ScreenAuthentication extends javax.swing.JPanel {
             }
         });
 
-        RepeatPasswordSignUp.setText("jPasswordField1");
         RepeatPasswordSignUp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 RepeatPasswordSignUpActionPerformed(evt);
@@ -150,31 +150,34 @@ public class ScreenAuthentication extends javax.swing.JPanel {
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(53, Short.MAX_VALUE)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(192, 192, 192)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
+                        .addGap(43, 43, 43)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(LabelSignUpName)
+                            .addComponent(LabelSignUpPassword))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(PasswordSignUp)
+                            .addComponent(TextFieldSignUpName)))
+                    .addComponent(ButtonSignUp, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(LabelSignUpRepeatPassword)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(RepeatPasswordSignUp, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(ButtonSignUp)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(LabelSignUpName, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(LabelSignUpPassword, javax.swing.GroupLayout.Alignment.TRAILING))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(PasswordSignUp, javax.swing.GroupLayout.DEFAULT_SIZE, 179, Short.MAX_VALUE)
-                            .addComponent(TextFieldSignUpName))))
-                .addGap(71, 71, 71))
+                            .addComponent(errorLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(RepeatPasswordSignUp, javax.swing.GroupLayout.PREFERRED_SIZE, 516, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(217, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(69, 69, 69)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(TextFieldSignUpName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(LabelSignUpName))
+                .addGap(239, 239, 239)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(LabelSignUpName)
+                    .addComponent(TextFieldSignUpName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(PasswordSignUp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -183,9 +186,11 @@ public class ScreenAuthentication extends javax.swing.JPanel {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(RepeatPasswordSignUp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(LabelSignUpRepeatPassword))
-                .addGap(18, 18, 18)
+                .addGap(34, 34, 34)
                 .addComponent(ButtonSignUp, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(50, Short.MAX_VALUE))
+                .addGap(36, 36, 36)
+                .addComponent(errorLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(255, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Sign Up", jPanel3);
@@ -196,14 +201,14 @@ public class ScreenAuthentication extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPane1)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1012, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPane1)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 756, Short.MAX_VALUE)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -215,6 +220,30 @@ public class ScreenAuthentication extends javax.swing.JPanel {
     private void ButtonSignInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonSignInActionPerformed
         String name = TextFieldSignInName.getText();
         String password = new String(PasswordSignIn.getPassword());
+
+        errorLabel.setEnabled(false);
+        errorLabel.setVisible(false);
+
+        if (name.equals("")) {
+            errorLabel.setEnabled(true);
+            errorLabel.setText("[ERROR]: " + "Name can't be empty");
+            return;
+        }
+
+        try {
+            User user = new User(name, password);
+            Sender<User> sender = new Sender<User>(name, null, Action.SIGN_IN);
+            sender.appendData(user);
+            Socket socket = root.getSocket();
+            ObjectOutputStream out = new ObjectOutputStream(socket.getOutputStream());
+            out.writeObject(sender);
+        } catch (IOException e) {
+            errorLabel.setEnabled(true);
+            errorLabel.setVisible(true);
+            errorLabel.setText("[ERROR]: " + e.toString());
+        }
+
+
     }//GEN-LAST:event_ButtonSignInActionPerformed
 
     private void PasswordSignInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PasswordSignInActionPerformed
@@ -230,20 +259,37 @@ public class ScreenAuthentication extends javax.swing.JPanel {
     }//GEN-LAST:event_PasswordSignUpActionPerformed
 
     private void ButtonSignUpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonSignUpActionPerformed
-        String name = TextFieldSignInName.getText();
-        String password = new String(PasswordSignIn.getPassword());
-        User user = new User(name, password);
-        Sender<User> sender = new Sender<User>(name, name, Action.CREATE_ACCOUNT);
-        sender.appendData(user);
+        String name = TextFieldSignUpName.getText();
+        String password = new String(PasswordSignUp.getPassword());
+        String repeatPassword = new String(RepeatPasswordSignUp.getPassword());
 
-        Socket socket = ScreenRoot.getSocket();
+        errorLabel.setEnabled(false);
+        errorLabel.setVisible(false);
 
-        try {
-            ObjectOutputStream out = new ObjectOutputStream(socket.getOutputStream());
-            out.writeObject(sender);
-        } catch (IOException e) {
-            System.err.println(e);
+        if (name.equals("")) {
+            errorLabel.setEnabled(true);
+            errorLabel.setText("[ERROR]: " + "Name can't be empty");
+            return;
         }
+
+        if (repeatPassword.equals(password)) {
+            try {
+                User user = new User(name, password);
+                Sender<User> sender = new Sender<User>(name, null, Action.CREATE_ACCOUNT);
+                sender.appendData(user);
+                Socket socket = root.getSocket();
+                ObjectOutputStream out = new ObjectOutputStream(socket.getOutputStream());
+                out.writeObject(sender);
+            } catch (IOException e) {
+                errorLabel.setEnabled(true);
+                errorLabel.setVisible(true);
+                errorLabel.setText("[ERROR]: " + e.toString());
+            }
+        } else {
+            errorLabel.setEnabled(true);
+            errorLabel.setText("[ERROR]: " + "Passwords doesn't match");
+        }
+
 
 
 
@@ -253,6 +299,11 @@ public class ScreenAuthentication extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_RepeatPasswordSignUpActionPerformed
 
+    public void setRoot(ScreenRoot root) {
+        this.root = root;
+    }
+
+    private ScreenRoot root;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ButtonSignIn;
@@ -267,6 +318,7 @@ public class ScreenAuthentication extends javax.swing.JPanel {
     private javax.swing.JPasswordField RepeatPasswordSignUp;
     private javax.swing.JTextField TextFieldSignInName;
     private javax.swing.JTextField TextFieldSignUpName;
+    private javax.swing.JLabel errorLabel;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JTabbedPane jTabbedPane1;
