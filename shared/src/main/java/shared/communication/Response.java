@@ -6,4 +6,5 @@ public enum Response {
     ERROR,
     STATUS,
     USERNAME,
+    NONE,
 }

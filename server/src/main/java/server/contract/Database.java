@@ -1,6 +1,7 @@
 package server.contract;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import shared.client.Group;
 import shared.client.Message;
@@ -17,10 +18,13 @@ public interface Database {
     User getUser(String name) throws SQLException;
     Group getGroup(String name);
     Group[] getAllUserGroup(long userID);
+    void getAllContacts(String name, ArrayList<String> list) throws SQLException;
 
 
     Message[] getUserMessages(String senderName, String receiverName);
     Message[] getAllUserMessages(String senderName);
     Message[] getGroupMessages(long groupID);
     Message[] getGroupAllMessages(String userName);
+
+    void getNewMessages(String userName, ArrayList<Message> m) throws SQLException;
 }

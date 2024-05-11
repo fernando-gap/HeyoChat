@@ -17,7 +17,7 @@ import server.contract.Protocol;
 
 public class ProtocolImpl implements Protocol<Connection> {
 	private ConcurrentLinkedDeque<Connection> readyDeque;
-	private HashMap<String, Connection> connections;
+	private HashMap<String, Connection> connections = new HashMap<>();
 	private ServerSocketChannel server;
 	private boolean isRunning = false;
 	private Selector selector;

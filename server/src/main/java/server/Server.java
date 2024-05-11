@@ -6,13 +6,11 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.InetSocketAddress;
-import java.net.Socket;
 import java.nio.ByteBuffer;
 import java.nio.channels.ServerSocketChannel;
 import java.nio.channels.SocketChannel;
 import java.sql.SQLException;
 import java.util.concurrent.ConcurrentLinkedDeque;
-
 import server.contract.Database;
 import server.contract.Protocol;
 import server.contract.impl.DatabaseImpl;
@@ -66,18 +64,18 @@ class Server {
                 if (connection.hasTimeout()) {
                     System.out.println("[STATUS]: timeout accepted");
                     Sender<?> sender = process(connection);
+
                     if (sender != null) {
+                        protocol.cacheConnection(sender.getName(), connection);
                         System.out.println("[STATUS]: Processing client...");
                         Receiver<?> receiver = doAction(sender);
                         connection.setReceiver(receiver);
                         send(connection);
-                        connection.getReadBuf().clear();
                         System.out.println("[STATUS]: done processing.");
                     } else {
                         System.out.println("[ERROR]: object is incomplete");
                     }
                 } else {
-                    // System.out.println("[STATUS]: waiting timeout");
                     if (!readyDeque.contains(connection)) {
                         readyDeque.add(connection);
                     }
@@ -93,6 +91,7 @@ class Server {
             ObjectInputStream in = new ObjectInputStream(bytes);
             Sender<?> sender = (Sender<?>) in.readObject();
             in.close();
+            buf.clear();
             return sender;
         } catch (IOException e) {
             System.err.println(e);
@@ -132,22 +131,42 @@ class Server {
             case SIGN_IN:
                 receiver = signInUserAccount(client);
                 break;
-            case ADD_USER_LIST:
+            case ADD_USER_CONTACT:
                 receiver = sendMessage2User(client);
-                System.err.println(receiver.getErrorMessage() + " " + receiver.getResponse());
+                System.err.println(receiver.getErrorMessage() + " " + receiver.getResponse() + " " + receiver.getAction());
                 if (receiver.getResponse() != Response.ERROR) {
-                    Receiver<String> newReceiver = new Receiver<>(Action.ADD_USER_LIST);
+                    Receiver<String> newReceiver = new Receiver<>(Action.ADD_USER_CONTACT);
                     newReceiver.appendData(client.getReceiverName());
                     return newReceiver;
                 }
                 break;
-            // case SEND_USER2USER:
-            // receiver = sendMessage2User(client);
-            // break;
+            case GET_ALL_USER_CONTACTS:
+                receiver = getAllUserContacts(client);
+                break;
+            case SEND_USER2USER:
+                receiver = sendMessage2User(client);
+                break;
+            case GET_MESSAGES:
+                receiver = getNewMessages(client);
+                break;
             // case SEND_USER2GROUP:
             // receiver = sendMessage2Group(client);
             case NONE:
                 break;
+        }
+
+        return receiver;
+    }
+
+    private Receiver<Message> getNewMessages(Sender<?> client) {
+        Receiver<Message> receiver = new Receiver<>(client.getName(), Action.GET_MESSAGES, Response.NONE);
+
+        try {
+            database.getNewMessages(client.getName(), receiver.getArrayList());
+            System.out.println("SIZE SERVER: " + receiver.getArrayList().size());
+            receiver.resetResponse();
+        } catch (SQLException e) {
+            receiver.setErrorMessage(e.toString());
         }
 
         return receiver;
@@ -196,39 +215,55 @@ class Server {
         return response;
     }
 
-    private Receiver<Integer> sendMessage2User(Sender<?> sender) {
-        Receiver<Integer> receiverResponse = new Receiver<>(Action.SEND_USER2USER, Response.ERROR);
+    private Receiver<String> sendMessage2User(Sender<?> sender) {
+        Receiver<String> senderResponse = new Receiver<>(Action.SEND_USER2USER, Response.ERROR);
         Message message = (Message) sender.getData(0);
+
         try {
             database.saveMessage(message, sender.getName(), sender.getReceiverName());
             Connection connection = protocol.getConnection(sender.getReceiverName());
+            System.out.print("IS IT? " + connection);
 
             if (connection != null) {
-                /* send from */
-                receiverResponse.resetResponse();
-                receiverResponse.appendData(1);
 
                 /* send to */
-                Receiver<Message> receiverMessage = new Receiver<>(Action.SEND_USER2USER);
+                Receiver<Message> receiverMessage = new Receiver<>(sender.getName(), Action.SEND_USER2USER);
                 receiverMessage.appendData(message);
                 connection.setReceiver(receiverMessage);
                 send(connection);
+
+                /* send from */
+                senderResponse.setCustomResponse(Response.STATUS);
+                senderResponse.appendData("sent");
+
+            } else {
+                /* message delivered */
+                System.out.println("error");
+                senderResponse.setCustomResponse(Response.STATUS);
+                senderResponse.appendData("delivered");
             }
-            return receiverResponse;
+
+            return senderResponse;
         } catch (SQLException e) {
             System.err.println(e);
-            receiverResponse.setErrorMessage("Can't send message");
+            senderResponse.setErrorMessage("Can't send message");
+        } catch (Error e) {
+            System.out.println(e);
         }
-        return receiverResponse;
+
+        System.out.println("I KNOW [delivered]");
+        return senderResponse;
     }
 
-    // private Boolean authorize(Connection sender) {
-    // return null;
-    // }
-
-    // private Receiver<Integer> sendMessage2Group(Client client) {
-    // return null;
-    // }
+    private Receiver<String> getAllUserContacts(Sender<?> sender) {
+        Receiver<String> response = new Receiver<>(Action.GET_ALL_USER_CONTACTS);
+        try {
+            database.getAllContacts(sender.getName(), response.getArrayList());
+        } catch (SQLException e) {
+            response.setErrorMessage(e.toString());
+        }
+        return response;
+    }
 
     // private Receiver<Message> getUserMessages(Client client) {
 

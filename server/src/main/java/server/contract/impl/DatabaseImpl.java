@@ -1,12 +1,12 @@
 package server.contract.impl;
 
-import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 import server.contract.Database;
 import shared.client.Group;
@@ -23,11 +23,49 @@ public class DatabaseImpl implements Database {
     }
 
     @Override
+    public void getAllContacts(String name, ArrayList<String> result) throws SQLException {
+        String sql = "SELECT userName FROM User u " +
+                "INNER JOIN " +
+                "(SELECT receiverID id FROM UserMessage ums " +
+                "WHERE ums.senderID = ? " +
+                "UNION " +
+                "SELECT senderID FROM UserMessage umr " +
+                "WHERE umr.receiverID = ?) c " +
+                "ON u.userID = c.id";
+
+        PreparedStatement s = connection.prepareStatement(sql);
+        User user = getUser(name);
+
+        if (user == null) {
+            throw new Error("Forbidden Operation.");
+        }
+
+        s.setInt(1, (int) user.getID());
+        s.setInt(2, (int) user.getID());
+        ResultSet query = s.executeQuery();
+
+        while (query.next()) {
+            if (query.getString("userName") == null) {
+                return;
+            }
+            result.add(query.getString("userName"));
+        }
+    }
+
+    @Override
     public void saveMessage(Message message, String senderName, String receiverName) throws SQLException {
         String sql = "insert into UserMessage (senderID, receiverID, message) values (?, ?, ?)";
         PreparedStatement s = connection.prepareStatement(sql);
-        s.setString(1, senderName);
-        s.setString(2, receiverName);
+
+        User sender = getUser(senderName);
+        User receiver = getUser(receiverName);
+
+        if (sender == null || receiver == null) {
+            throw new Error("Usernames are not valid.");
+        }
+
+        s.setLong(1, sender.getID());
+        s.setLong(2, receiver.getID());
         s.setString(3, message.getMessage());
         s.executeUpdate();
     }
@@ -42,6 +80,37 @@ public class DatabaseImpl implements Database {
     public void createGroup(String name) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'createGroup'");
+    }
+
+    @Override
+    public void getNewMessages(String userName, ArrayList<Message> m) throws SQLException {
+        String sql = "SELECT um1.userName AS sender, um2.userName AS receiver, um.message, um.createdAt "
+                + "FROM UserMessage um "
+                + "INNER JOIN User um1 ON um.senderID = um1.userID "
+                + "INNER JOIN User um2 ON um.receiverID = um2.userID "
+                + "WHERE um.senderID = ? OR um.receiverID = ? "
+                + "ORDER BY um.createdAt ASC";
+
+        try {
+            PreparedStatement s = connection.prepareStatement(sql);
+            User sender = getUser(userName);
+            s.setInt(1, (int) sender.getID());
+            s.setInt(2, (int) sender.getID());
+            System.err.println(s);
+            ResultSet query = s.executeQuery();
+
+            while (query.next()) {
+                String sName = query.getString("sender");
+                String rName = query.getString("receiver");
+                Message msg = new Message(query.getString("message"), sName, rName, query.getTimestamp("createdAt"));
+
+                System.out.println(userName);
+                System.out.println(msg.getSenderName() + " " + msg.getReceiverName());
+                m.add(msg);
+            }
+        } catch (SQLException e) {
+            System.err.println(e);
+        }
     }
 
     @Override

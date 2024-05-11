@@ -28,14 +28,14 @@ public abstract class Client implements Serializable {
         switch (action) {
             case SEND_USER2USER:
             case SEND_USER2GROUP:
-            case GET_NEW_MESSAGES:
+            case GET_MESSAGES:
             case GET_USER_MESSAGES:
             case GET_GROUP_MESSAGES:
             case GET_ALL_USER_MESSAGES:
             case GET_ALL_GROUP_MESSAGES:
                 return Response.MESSAGE;
             
-            case ADD_USER_LIST:
+            case ADD_USER_CONTACT:
                 return Response.USERNAME;
 
             case CREATE_ACCOUNT:

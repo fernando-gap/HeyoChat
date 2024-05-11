@@ -22,17 +22,21 @@ public class Receiver<T> extends Client implements Data<T> {
         this.senderName = senderName;
     }
 
-    public void resetResponse() {
-        customResponse = getResponse();
+    public Receiver(String senderName, Action actionPerformed, Response response) {
+        super(actionPerformed);
+        this.senderName = senderName;
     }
 
-    @Override
-    public Response getResponse() {
-        if (customResponse != null) return customResponse;
-        return getResponseFromAction();
+    public void resetResponse() {
+        customResponse = null;
+    }
+
+    public void setCustomResponse(Response customResponse) {
+        this.customResponse = customResponse;
     }
 
     public void setErrorMessage(String errorMessage) {
+        this.customResponse = Response.ERROR;
         this.errorMessage = errorMessage;
     }
 
@@ -40,8 +44,18 @@ public class Receiver<T> extends Client implements Data<T> {
         return errorMessage;
     }
 
+    @Override
+    public Response getResponse() {
+        if (customResponse != null) return customResponse;
+        return super.getResponse();
+    }
+
     public String getSenderName() {
         return senderName;
+    }
+
+    public ArrayList<T> getArrayList() {
+        return data;
     }
 
     public boolean hasError() {

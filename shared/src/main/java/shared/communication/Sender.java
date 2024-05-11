@@ -11,6 +11,11 @@ public class Sender<T> extends Client implements Data<T> {
         super(action);
     }
 
+    public Sender(Action action, String name) {
+        super(action);
+        this.name = name;
+    }
+
     public Sender(String name, String receiverName, Action action) {
         super(action);
         this.name = name;
