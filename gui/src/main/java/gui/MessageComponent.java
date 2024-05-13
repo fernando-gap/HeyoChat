@@ -17,11 +17,11 @@ public class MessageComponent extends javax.swing.JPanel {
         initComponents();
         messageTextArea.setText(message);
         if (isReceiver) {
-            this.add(messageTextArea);
+            this.add(jPanel1);
             this.add(fillerPanel);
         } else {
             this.add(fillerPanel);
-            this.add(messageTextArea);
+            this.add(jPanel1);
         }
     }
 
@@ -34,14 +34,10 @@ public class MessageComponent extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        messageTextArea = new javax.swing.JTextArea();
         fillerPanel = new javax.swing.JPanel();
-
-        messageTextArea.setEditable(false);
-        messageTextArea.setColumns(20);
-        messageTextArea.setRows(5);
-        messageTextArea.setFocusable(false);
-        messageTextArea.setVerifyInputWhenFocusTarget(false);
+        jPanel1 = new javax.swing.JPanel();
+        messageTextArea = new javax.swing.JTextArea();
+        jLabel1 = new javax.swing.JLabel();
 
         fillerPanel.setDoubleBuffered(false);
         fillerPanel.setFocusable(false);
@@ -61,6 +57,37 @@ public class MessageComponent extends javax.swing.JPanel {
             .addGap(0, 100, Short.MAX_VALUE)
         );
 
+        messageTextArea.setEditable(false);
+        messageTextArea.setColumns(20);
+        messageTextArea.setRows(5);
+        messageTextArea.setFocusable(false);
+        messageTextArea.setVerifyInputWhenFocusTarget(false);
+
+        jLabel1.setText("jLabel1");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(messageTextArea, javax.swing.GroupLayout.DEFAULT_SIZE, 313, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(messageTextArea, javax.swing.GroupLayout.DEFAULT_SIZE, 78, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
         setFocusable(false);
         setMaximumSize(new java.awt.Dimension(2147483647, 100));
         setMinimumSize(new java.awt.Dimension(13, 100));
@@ -73,6 +100,8 @@ public class MessageComponent extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel fillerPanel;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JTextArea messageTextArea;
     // End of variables declaration//GEN-END:variables
 }
