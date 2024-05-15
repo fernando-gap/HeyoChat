@@ -4,12 +4,13 @@
  */
 package gui;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.nio.file.Files;
 import java.util.ArrayList;
-import java.awt.Button;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -20,7 +21,7 @@ import java.util.HashMap;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
-import javax.swing.JLabel;
+import javax.swing.JFileChooser;
 import javax.swing.SwingUtilities;
 import javax.swing.JOptionPane;
 
@@ -63,7 +64,8 @@ public class ScreenRoot extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         removeUserDialog = new javax.swing.JDialog();
@@ -86,6 +88,7 @@ public class ScreenRoot extends javax.swing.JFrame {
         emojiDialog = new javax.swing.JDialog();
         jScrollPane2 = new javax.swing.JScrollPane();
         jPanel3 = new javax.swing.JPanel();
+        jFileChooser = new javax.swing.JFileChooser();
         jSplitPane1 = new javax.swing.JSplitPane();
         jScrollPane1 = new javax.swing.JScrollPane();
         contactList = new javax.swing.JList<>();
@@ -93,11 +96,11 @@ public class ScreenRoot extends javax.swing.JFrame {
         jScrollPane6 = new javax.swing.JScrollPane();
         boxPanel = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        sendFileButton = new javax.swing.JButton();
         jScrollPane4 = new javax.swing.JScrollPane();
         messageTextArea = new javax.swing.JTextArea();
         sendButton = new javax.swing.JButton();
         emojiButton = new javax.swing.JButton();
+        sendFileButton = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -133,46 +136,62 @@ public class ScreenRoot extends javax.swing.JFrame {
         javax.swing.GroupLayout removeUserDialogLayout = new javax.swing.GroupLayout(removeUserDialog.getContentPane());
         removeUserDialog.getContentPane().setLayout(removeUserDialogLayout);
         removeUserDialogLayout.setHorizontalGroup(
-            removeUserDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(removeUserDialogLayout.createSequentialGroup()
-                .addGroup(removeUserDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(removeUserDialogLayout.createSequentialGroup()
-                        .addGap(71, 71, 71)
-                        .addGroup(removeUserDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(statusRemoveUserDialogLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(removeUserDialogLayout.createSequentialGroup()
-                                .addGroup(removeUserDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(removeUserDialogLayout.createSequentialGroup()
-                                        .addComponent(cancelRemoveUserDialogButton)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(RemoveUserDialogButton))
-                                    .addGroup(removeUserDialogLayout.createSequentialGroup()
-                                        .addComponent(jLabel3)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(RemoveUserDialogTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(12, 12, 12))))
-                    .addGroup(removeUserDialogLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel4)))
-                .addContainerGap(45, Short.MAX_VALUE))
-        );
+                removeUserDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(removeUserDialogLayout.createSequentialGroup()
+                                .addGroup(removeUserDialogLayout
+                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(removeUserDialogLayout.createSequentialGroup()
+                                                .addGap(71, 71, 71)
+                                                .addGroup(removeUserDialogLayout
+                                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                        .addComponent(statusRemoveUserDialogLabel1,
+                                                                javax.swing.GroupLayout.PREFERRED_SIZE, 272,
+                                                                javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addGroup(removeUserDialogLayout.createSequentialGroup()
+                                                                .addGroup(removeUserDialogLayout.createParallelGroup(
+                                                                        javax.swing.GroupLayout.Alignment.TRAILING)
+                                                                        .addGroup(removeUserDialogLayout
+                                                                                .createSequentialGroup()
+                                                                                .addComponent(
+                                                                                        cancelRemoveUserDialogButton)
+                                                                                .addPreferredGap(
+                                                                                        javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                                                .addComponent(RemoveUserDialogButton))
+                                                                        .addGroup(removeUserDialogLayout
+                                                                                .createSequentialGroup()
+                                                                                .addComponent(jLabel3)
+                                                                                .addPreferredGap(
+                                                                                        javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                                                .addComponent(RemoveUserDialogTextField,
+                                                                                        javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                                                        200,
+                                                                                        javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                                                .addGap(12, 12, 12))))
+                                        .addGroup(removeUserDialogLayout.createSequentialGroup()
+                                                .addContainerGap()
+                                                .addComponent(jLabel4)))
+                                .addContainerGap(45, Short.MAX_VALUE)));
         removeUserDialogLayout.setVerticalGroup(
-            removeUserDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(removeUserDialogLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel4)
-                .addGap(90, 90, 90)
-                .addGroup(removeUserDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(RemoveUserDialogTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(removeUserDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(RemoveUserDialogButton)
-                    .addComponent(cancelRemoveUserDialogButton))
-                .addGap(35, 35, 35)
-                .addComponent(statusRemoveUserDialogLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(52, Short.MAX_VALUE))
-        );
+                removeUserDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(removeUserDialogLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jLabel4)
+                                .addGap(90, 90, 90)
+                                .addGroup(removeUserDialogLayout
+                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(jLabel3)
+                                        .addComponent(RemoveUserDialogTextField, javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(removeUserDialogLayout
+                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(RemoveUserDialogButton)
+                                        .addComponent(cancelRemoveUserDialogButton))
+                                .addGap(35, 35, 35)
+                                .addComponent(statusRemoveUserDialogLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(52, Short.MAX_VALUE)));
 
         jLabel1.setText("Username");
 
@@ -209,50 +228,64 @@ public class ScreenRoot extends javax.swing.JFrame {
         javax.swing.GroupLayout addUserDialogLayout = new javax.swing.GroupLayout(addUserDialog.getContentPane());
         addUserDialog.getContentPane().setLayout(addUserDialogLayout);
         addUserDialogLayout.setHorizontalGroup(
-            addUserDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(addUserDialogLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel2)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, addUserDialogLayout.createSequentialGroup()
-                .addGap(0, 78, Short.MAX_VALUE)
-                .addGroup(addUserDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(statusAddUserDialogLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(addUserDialogLayout.createSequentialGroup()
-                        .addComponent(cancelAddUserDialogButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(addUserDialogButton))
-                    .addGroup(addUserDialogLayout.createSequentialGroup()
-                        .addGroup(addUserDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel5))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(addUserDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 257, Short.MAX_VALUE)
-                            .addComponent(addUserDialogTextField))))
-                .addGap(68, 68, 68))
-        );
+                addUserDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(addUserDialogLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jLabel2)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, addUserDialogLayout
+                                .createSequentialGroup()
+                                .addGap(0, 78, Short.MAX_VALUE)
+                                .addGroup(addUserDialogLayout
+                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(statusAddUserDialogLabel, javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                272, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGroup(addUserDialogLayout.createSequentialGroup()
+                                                .addComponent(cancelAddUserDialogButton)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(addUserDialogButton))
+                                        .addGroup(addUserDialogLayout.createSequentialGroup()
+                                                .addGroup(addUserDialogLayout
+                                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                        .addComponent(jLabel1)
+                                                        .addComponent(jLabel5))
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addGroup(addUserDialogLayout
+                                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING,
+                                                                false)
+                                                        .addComponent(jScrollPane3,
+                                                                javax.swing.GroupLayout.DEFAULT_SIZE, 257,
+                                                                Short.MAX_VALUE)
+                                                        .addComponent(addUserDialogTextField))))
+                                .addGap(68, 68, 68)));
         addUserDialogLayout.setVerticalGroup(
-            addUserDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(addUserDialogLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel2)
-                .addGap(33, 33, 33)
-                .addGroup(addUserDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(addUserDialogTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(addUserDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(addUserDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(addUserDialogButton)
-                    .addComponent(cancelAddUserDialogButton))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(statusAddUserDialogLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(40, Short.MAX_VALUE))
-        );
+                addUserDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(addUserDialogLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jLabel2)
+                                .addGap(33, 33, 33)
+                                .addGroup(addUserDialogLayout
+                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(jLabel1)
+                                        .addComponent(addUserDialogTextField, javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(addUserDialogLayout
+                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jLabel5))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(addUserDialogLayout
+                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(addUserDialogButton)
+                                        .addComponent(cancelAddUserDialogButton))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(statusAddUserDialogLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 30,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(40, Short.MAX_VALUE)));
 
         jScrollPane2.setPreferredSize(new java.awt.Dimension(300, 300));
 
@@ -292,13 +325,6 @@ public class ScreenRoot extends javax.swing.JFrame {
 
         jPanel1.add(jScrollPane6, java.awt.BorderLayout.CENTER);
 
-        sendFileButton.setText("File");
-        sendFileButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                sendFileButtonActionPerformed(evt);
-            }
-        });
-
         messageTextArea.setColumns(20);
         messageTextArea.setRows(5);
         jScrollPane4.setViewportView(messageTextArea);
@@ -317,35 +343,47 @@ public class ScreenRoot extends javax.swing.JFrame {
             }
         });
 
+        sendFileButton.setText("File");
+        sendFileButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sendFileButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(65, 65, 65)
-                .addComponent(sendFileButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(emojiButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 435, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
-                .addComponent(sendButton)
-                .addGap(69, 69, 69))
-        );
+                jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(41, 41, 41)
+                                .addComponent(sendFileButton)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(emojiButton)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 435,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48,
+                                        Short.MAX_VALUE)
+                                .addComponent(sendButton)
+                                .addGap(69, 69, 69)));
         jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(32, 32, 32)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(sendFileButton, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(emojiButton, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(sendButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(26, 26, 26))
-        );
+                jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                .addGap(32, 32, 32)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(sendFileButton, javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.LEADING,
+                                                javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout
+                                                .createSequentialGroup()
+                                                .addComponent(emojiButton, javax.swing.GroupLayout.PREFERRED_SIZE, 42,
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(0, 0, Short.MAX_VALUE))
+                                        .addComponent(sendButton, javax.swing.GroupLayout.Alignment.LEADING,
+                                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(26, 26, 26)));
 
         jPanel1.add(jPanel2, java.awt.BorderLayout.SOUTH);
 
@@ -381,11 +419,44 @@ public class ScreenRoot extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void emojiButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emojiButtonActionPerformed
-        // TODO add your handling code here:
+    private void emojiButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_emojiButtonActionPerformed
         emojiDialog.pack();
         emojiDialog.setVisible(true);
-    }//GEN-LAST:event_emojiButtonActionPerformed
+    }// GEN-LAST:event_emojiButtonActionPerformed
+
+    private void sendFileButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_sendFileButtonActionPerformed
+        if (jFileChooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
+            File file = jFileChooser.getSelectedFile();
+            String receiverName = contactList.getSelectedValue();
+            if (receiverName.equals(currentUser.getName() + " (you)")) {
+                receiverName = currentUser.getName();
+            }
+
+            try {
+                Message message = new Message("You sent the file " + file.getName() + " of size " + file.length() + " bytes.");
+                MessageComponent m = new MessageComponent(message, false);
+                ArrayList<MessageComponent> history = chat.get(currentUser.getName());
+                if (history == null) {
+                    ArrayList<MessageComponent> h = new ArrayList<>();
+                    h.add(m);
+                } else {
+                    history.add(m);
+                }
+                boxPanel.add(m);
+                boxPanel.add(Box.createRigidArea(new Dimension(0, 8)));
+
+                byte[] fileData = Files.readAllBytes(file.toPath());
+                Sender<String> sender = new Sender<String>(fileData, currentUser.getName(),
+                        receiverName, Action.SEND_FILE2USER);
+                sender.appendData(file.getName());
+                ObjectOutputStream objectOut = new ObjectOutputStream(socket.getOutputStream());
+                objectOut.writeObject(sender);
+
+            } catch (IOException e) {
+                System.err.println(e);
+            }
+        }
+    }// GEN-LAST:event_sendFileButtonActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jMenuItem1ActionPerformed
         // TODO add your handling code here:
@@ -461,7 +532,6 @@ public class ScreenRoot extends javax.swing.JFrame {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                MessageComponent messageComponent = new MessageComponent(messageTextArea.getText(), false);
                 try {
                     String name = contactList.getSelectedValue();
 
@@ -469,17 +539,20 @@ public class ScreenRoot extends javax.swing.JFrame {
                         name = currentUser.getName();
                     }
 
+                    Message messageFromSender = new Message(messageTextArea.getText(), currentUser.getName(), name);
+                    MessageComponent messageComponent = new MessageComponent(messageFromSender, false);
                     Sender<Message> sender = new Sender<>(currentUser.getName(), name, Action.SEND_USER2USER);
-                    Message m = new Message(messageTextArea.getText(), currentUser.getName(), name);
-                    sender.appendData(m);
+                    sender.appendData(messageFromSender);
+
+                    ArrayList<MessageComponent> c = chat.get(name);
+                    c.add(messageComponent);
+
+                    boxPanel.add(messageComponent);
+                    boxPanel.add(Box.createRigidArea(new Dimension(0, 8)));
                     ObjectOutputStream out = new ObjectOutputStream(socket.getOutputStream());
+
                     out.writeObject(sender);
-                    if (!name.equals(currentUser.getName())) {
-                        boxPanel.add(messageComponent);
-                        boxPanel.add(Box.createRigidArea(new Dimension(0, 8)));
-                        ArrayList<Message> c = chat.get(name);
-                        c.add(m);
-                    }
+
                 } catch (IOException e) {
                     System.err.println(e);
                     return;
@@ -498,10 +571,6 @@ public class ScreenRoot extends javax.swing.JFrame {
         // TODO add your handling code here:
     }// GEN-LAST:event_sendEmojiButtonActionPerformed
 
-    private void sendFileButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_sendFileButtonActionPerformed
-        // TODO add your handling code here:
-    }// GEN-LAST:event_sendFileButtonActionPerformed
-
     private void contactListValueChanged(javax.swing.event.ListSelectionEvent evt) {// GEN-FIRST:event_contactListValueChanged
         if (evt.getValueIsAdjusting())
             return;
@@ -516,16 +585,9 @@ public class ScreenRoot extends javax.swing.JFrame {
                     userSelected = currentUser.getName();
                 }
 
-                ArrayList<Message> history = chat.get(userSelected);
+                ArrayList<MessageComponent> history = chat.get(userSelected);
 
-                for (Message m : history) {
-                    MessageComponent mc;
-
-                    if (m.getSenderName().equals(userSelected)) {
-                        mc = new MessageComponent(m.getMessage(), false);
-                    } else {
-                        mc = new MessageComponent(m.getMessage(), true);
-                    }
+                for (MessageComponent mc : history) {
                     boxPanel.add(mc);
                     boxPanel.add(Box.createRigidArea(new Dimension(0, 5)));
                 }
@@ -575,10 +637,39 @@ public class ScreenRoot extends javax.swing.JFrame {
                     if (receiver.getResponse() == Response.MESSAGE) {
                         handleNewMessages(receiver);
                     }
+                    break;
+                case SEND_FILE2USER:
+                    if (receiver.getResponse() == Response.MESSAGE) {
+                        System.out.println("[FILE RECEIVED]");
+                        handleFileSent(receiver);
+                    } else if (receiver.getResponse() == Response.STATUS) {
+                        System.err.println("STATUS: " + (String) receiver.getData(0));
+                    }
+                    break;
             }
         } else {
             System.err.println("ERROR. UNFORTUNATELY: " + receiver.getErrorMessage());
         }
+    }
+
+    private void handleFileSent(Receiver<?> receiver) {
+        byte[] file = receiver.getFileBytes();
+        MessageComponent m = new MessageComponent((Message) receiver.getData(0), jFileChooser, this, file);
+
+        String name = contactList.getSelectedValue();
+        if (name.equals(currentUser.getName() + " (you)")) {
+            name = currentUser.getName();
+        }
+
+        if (name.equals(receiver.getSenderName())) {
+            boxPanel.add(m);
+            boxPanel.add(Box.createRigidArea(new Dimension(0, 5)));
+            boxPanel.revalidate();
+            boxPanel.repaint();
+            pack();
+        }
+        ArrayList<MessageComponent> c = chat.get(receiver.getSenderName());
+        c.add(m);
     }
 
     // mensagems enviadas mas nao recebidas
@@ -590,22 +681,22 @@ public class ScreenRoot extends javax.swing.JFrame {
                     Message newMessage = (Message) o;
                     if (newMessage == null)
                         return;
-
+                    
                     String selectedReceiver = contactList.getSelectedValue();
                     if (selectedReceiver.equals(currentUser.getName() + " (you)")) {
                         selectedReceiver = currentUser.getName();
                     }
 
-                    MessageComponent m;
                     /* adiciona mensagem a um chat */
                     if (newMessage.getSenderName().equals(currentUser.getName())) {
                         /* sender, portanto, adiciona ao chat receiver */
-                        ArrayList<Message> contact = chat.get(newMessage.getReceiverName());
-                        m = new MessageComponent(newMessage.getMessage(), false);
-                        contact.add(newMessage);
+                        ArrayList<MessageComponent> contact = chat.get(newMessage.getReceiverName());
+                        MessageComponent m = new MessageComponent(newMessage, false);
+                        contact.add(m);
 
                         if (selectedReceiver.equals(newMessage.getReceiverName())) {
                             boxPanel.add(m);
+
                             boxPanel.add(Box.createRigidArea(new Dimension(0, 5)));
                             boxPanel.revalidate();
                             boxPanel.repaint();
@@ -613,27 +704,19 @@ public class ScreenRoot extends javax.swing.JFrame {
                         }
                     } else {
                         /* nao sender, mas receiver (que enviou) */
-                        ArrayList<Message> contact = chat.get(newMessage.getSenderName());
-                        m = new MessageComponent(newMessage.getMessage(), true);
-                        contact.add(newMessage);
+                        ArrayList<MessageComponent> contact = chat.get(newMessage.getSenderName());
+                        MessageComponent m = new MessageComponent(newMessage, true);
+                        contact.add(m);
 
                         if (selectedReceiver.equals(newMessage.getSenderName())) {
                             boxPanel.add(m);
+
                             boxPanel.add(Box.createRigidArea(new Dimension(0, 5)));
                             boxPanel.revalidate();
                             boxPanel.repaint();
                             pack();
                         }
                     }
-
-                    // if (selectedReceiver.equals(newMessage.getReceiverName()) ||
-                    // selectedReceiver.equals(newMessage.getSenderName())) {
-                    // boxPanel.add(m);
-                    // boxPanel.add(Box.createRigidArea(new Dimension(0, 5)));
-                    // boxPanel.revalidate();
-                    // boxPanel.repaint();
-                    // pack();
-                    // }
                 }
             }
         });
@@ -644,17 +727,25 @@ public class ScreenRoot extends javax.swing.JFrame {
             @Override
             public void run() {
                 Message message = (Message) receiver.getData(0);
-                MessageComponent m = new MessageComponent(message.getMessage(), true);
+                MessageComponent m = new MessageComponent(message, true);
 
                 if (contactList.getSelectedValue().equals(receiver.getSenderName())) {
                     boxPanel.add(m);
+
                     boxPanel.add(Box.createRigidArea(new Dimension(0, 5)));
                     boxPanel.revalidate();
                     boxPanel.repaint();
                     pack();
                 }
-                ArrayList<Message> c = chat.get(receiver.getSenderName());
-                c.add(message);
+
+                ArrayList<MessageComponent> c = chat.get(receiver.getSenderName());
+                if (c == null) {
+                    ArrayList<MessageComponent> newHistory = new ArrayList<>();
+                    newHistory.add(m);
+                    chat.put(receiver.getSenderName(), newHistory);
+                }  else {
+                    c.add(m);
+                }
             }
         });
     }
@@ -709,7 +800,7 @@ public class ScreenRoot extends javax.swing.JFrame {
                     } else {
                         list.addElement(username);
                     }
-                    chat.put(username, new ArrayList<Message>());
+                    chat.put(username, new ArrayList<MessageComponent>());
                 }
                 try {
                     if (isAuthorized) {
@@ -739,7 +830,7 @@ public class ScreenRoot extends javax.swing.JFrame {
                     } else {
                         list.addElement(username);
                     }
-                    chat.put(username, new ArrayList<Message>());
+                    chat.put(username, new ArrayList<MessageComponent>());
                 }
 
                 if (contactList.getSelectedIndex() == -1) {
@@ -774,7 +865,7 @@ public class ScreenRoot extends javax.swing.JFrame {
     private ScreenChat screenChat;
     private User currentUser;
     private boolean isAuthorized = false;
-    private HashMap<String, ArrayList<Message>> chat;
+    private HashMap<String, ArrayList<MessageComponent>> chat;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton RemoveUserDialogButton;
@@ -789,6 +880,7 @@ public class ScreenRoot extends javax.swing.JFrame {
     private javax.swing.JList<String> contactList;
     private javax.swing.JButton emojiButton;
     private javax.swing.JDialog emojiDialog;
+    private javax.swing.JFileChooser jFileChooser;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -817,13 +909,13 @@ public class ScreenRoot extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     public String[] emojis = {
-            "😀","😃", "😄", "😁", "😆", "😅", "😂", "🙃", "😉", "😊", "😇", "😍", "😘",
-             "😗", "😚", "😙", "😋", "😛", "😜", "😝",
-             "😐", "😑", "😶", "😶‍🌫️", "😏", "😒", "😮‍💨", "😌",
-             "😔", "😪", "😴", "😷", "😵", "😵‍💫",
-             "😎", "😕", "😟", "😮", "😯", "😲", "😳", "😦", "😧",
-             "😨", "😰", "😥", "😢", "😭", "😱", "😖", "😣", "😞", "😓", "😩", "😫", "😡", "😠", "😈",
-             "👽", "😺", "😸", "😹", "😻", "😼", "😽", "🙀",
-             "😿", "😾", "❤",
+            "😀", "😃", "😄", "😁", "😆", "😅", "😂", "🙃", "😉", "😊", "😇", "😍", "😘",
+            "😗", "😚", "😙", "😋", "😛", "😜", "😝",
+            "😐", "😑", "😶", "😶‍🌫️", "😏", "😒", "😮‍💨", "😌",
+            "😔", "😪", "😴", "😷", "😵", "😵‍💫",
+            "😎", "😕", "😟", "😮", "😯", "😲", "😳", "😦", "😧",
+            "😨", "😰", "😥", "😢", "😭", "😱", "😖", "😣", "😞", "😓", "😩", "😫", "😡", "😠", "😈",
+            "👽", "😺", "😸", "😹", "😻", "😼", "😽", "🙀",
+            "😿", "😾", "❤",
     };
 }

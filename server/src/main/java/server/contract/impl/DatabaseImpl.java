@@ -103,9 +103,6 @@ public class DatabaseImpl implements Database {
                 String sName = query.getString("sender");
                 String rName = query.getString("receiver");
                 Message msg = new Message(query.getString("message"), sName, rName, query.getTimestamp("createdAt"));
-
-                System.out.println(userName);
-                System.out.println(msg.getSenderName() + " " + msg.getReceiverName());
                 m.add(msg);
             }
         } catch (SQLException e) {

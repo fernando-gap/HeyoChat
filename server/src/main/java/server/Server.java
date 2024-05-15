@@ -73,6 +73,7 @@ class Server {
                         send(connection);
                         System.out.println("[STATUS]: done processing.");
                     } else {
+                        connection.startTimeout(100);
                         System.out.println("[ERROR]: object is incomplete");
                     }
                 } else {
@@ -146,6 +147,9 @@ class Server {
             case SEND_USER2USER:
                 receiver = sendMessage2User(client);
                 break;
+            case SEND_FILE2USER:
+                receiver = sendFile2User(client);
+                break;
             case GET_MESSAGES:
                 receiver = getNewMessages(client);
                 break;
@@ -158,12 +162,47 @@ class Server {
         return receiver;
     }
 
+    private Receiver<?> sendFile2User(Sender<?> sender) {
+        Receiver<String> response = new Receiver<>(sender.getName(), Action.SEND_FILE2USER);
+
+        try {
+            String filename = (String) sender.getData(0);
+
+            Message text = new Message("sent " + filename + " of size " + sender.getFileBytes().length, sender.getName(), sender.getReceiverName());
+            Connection connection = protocol.getConnection(sender.getReceiverName());
+            database.saveMessage(text, sender.getName(), sender.getReceiverName());
+
+            if (connection != null) {
+                /* send to */
+                Receiver<Message> receiver = new Receiver<>(sender.getName(), Action.SEND_FILE2USER);
+                receiver.appendData(text);
+                receiver.setFileBytes(sender.getFileBytes());
+                connection.setReceiver(receiver);
+                send(connection);
+
+                response.setCustomResponse(Response.STATUS);
+                response.appendData("file sent");
+
+            } else {
+                response.setErrorMessage("file was not sent");
+            }
+
+            return response;
+        } catch (SQLException e) {
+            System.err.println(e);
+            response.setErrorMessage("Can't send message");
+        } catch (Error e) {
+            System.out.println(e);
+            response.setErrorMessage(e.toString());
+        }
+        return response;
+    }
+
     private Receiver<Message> getNewMessages(Sender<?> client) {
         Receiver<Message> receiver = new Receiver<>(client.getName(), Action.GET_MESSAGES, Response.NONE);
 
         try {
             database.getNewMessages(client.getName(), receiver.getArrayList());
-            System.out.println("SIZE SERVER: " + receiver.getArrayList().size());
             receiver.resetResponse();
         } catch (SQLException e) {
             receiver.setErrorMessage(e.toString());
@@ -222,7 +261,6 @@ class Server {
         try {
             database.saveMessage(message, sender.getName(), sender.getReceiverName());
             Connection connection = protocol.getConnection(sender.getReceiverName());
-            System.out.print("IS IT? " + connection);
 
             if (connection != null) {
 
@@ -251,7 +289,6 @@ class Server {
             System.out.println(e);
         }
 
-        System.out.println("I KNOW [delivered]");
         return senderResponse;
     }
 

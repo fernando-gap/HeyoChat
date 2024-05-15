@@ -6,10 +6,24 @@ import java.sql.Timestamp;
 public abstract class Client implements Serializable {
     private Action action;
     private Timestamp timestamp;
+    private byte[] file;
 
     public Client(Action action) {
         this.action = action;
         timestamp = new Timestamp(System.currentTimeMillis());
+    }
+
+    public Client(byte[] bytes, Action action) {
+        this.action = action;
+        file = bytes;
+    }
+
+    public byte[] getFileBytes() {
+        return file;
+    }
+
+    public void setFileBytes(byte[] bytes) {
+        file = bytes;
     }
 
     public Action getAction() {
@@ -20,6 +34,10 @@ public abstract class Client implements Serializable {
         return timestamp;
     }
 
+    public void setAction(Action action) {
+        this.action = action;
+    }
+
     public Response getResponse() {
         return getResponseFromAction();
     }
@@ -28,6 +46,7 @@ public abstract class Client implements Serializable {
         switch (action) {
             case SEND_USER2USER:
             case SEND_USER2GROUP:
+            case SEND_FILE2USER: // the message is the file name + size
             case GET_MESSAGES:
             case GET_USER_MESSAGES:
             case GET_GROUP_MESSAGES:

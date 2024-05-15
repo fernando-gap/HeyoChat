@@ -3,6 +3,7 @@ package shared.communication;
 public enum Action {
     SEND_USER2USER,
     SEND_USER2GROUP,
+    SEND_FILE2USER,
 
     ADD_USER_CONTACT,
     GET_ALL_USER_CONTACTS,
