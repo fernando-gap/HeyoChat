@@ -23,6 +23,11 @@ public class DatabaseImpl implements Database {
     }
 
     @Override
+    public void deleteGroup(String name) throws SQLException {
+
+    }
+
+    @Override
     public void getAllContacts(String name, ArrayList<String> result) throws SQLException {
         String sql = "SELECT userName FROM User u " +
                 "INNER JOIN " +
@@ -191,8 +196,36 @@ public class DatabaseImpl implements Database {
                     + "FOREIGN KEY (receiverID) REFERENCES User(userID)"
                     + ");";
 
+            String tableGroup = "CREATE TABLE IF NOT EXISTS ChatGroup("
+                    + "groupID INT PRIMARY KEY AUTO_INCREMENT, "
+                    + "groupName VARCHAR(300) NOT NULL, "
+                    + "createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP"
+                    + ");";
+
+            String tableUserGroup = "CREATE TABLE IF NOT EXISTS UserGroup("
+                    + "userGroupID INT PRIMARY KEY, "
+                    + "userID INT, "
+                    + "groupID INT, "
+                    + "UNIQUE(userID, groupID), "
+                    + "FOREIGN KEY (userID) REFERENCES User(userID), "
+                    + "FOREIGN KEY (groupID) REFERENCES ChatGroup(groupID)"
+                    + ");";
+
+            String tableGroupMessage = "CREATE TABLE GroupMessage ("
+                    + "groupMessageID INT PRIMARY KEY, "
+                    + "groupID INT, "
+                    + "userGroupID INT, " // sender of the message
+                    + "Message TEXT NOT NULL, "
+                    + "Date TIMESTAMP DEFAULT CURRENT_TIMESTAMP, "
+                    + "FOREIGN KEY (groupID) REFERENCES ChatGroup(groupID) ON DELETE CASCADE, "
+                    + "FOREIGN KEY (userGroupID) REFERENCES UserGroup(userGroupID)"
+                    + ");";
+
             s.executeUpdate(tableUser);
             s.executeUpdate(tableUserMessage);
+            s.executeUpdate(tableGroup);
+            s.executeUpdate(tableUserGroup);
+            // s.executeUpdate(tableGroupMessage);
             System.out.println("Creation of Tables Executed");
 
         } catch (SQLException e) {

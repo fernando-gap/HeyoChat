@@ -65,30 +65,51 @@ public class ScreenRoot extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
-    // Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         removeUserDialog = new javax.swing.JDialog();
         jLabel3 = new javax.swing.JLabel();
-        RemoveUserDialogTextField = new javax.swing.JTextField();
-        RemoveUserDialogButton = new javax.swing.JButton();
+        removeUserDialogTextField = new javax.swing.JTextField();
         statusRemoveUserDialogLabel1 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        cancelRemoveUserDialogButton = new javax.swing.JButton();
+        removeUserButton = new javax.swing.JButton();
+        cancelRemoveButtonUser = new javax.swing.JButton();
         addUserDialog = new javax.swing.JDialog();
-        jLabel1 = new javax.swing.JLabel();
-        addUserDialogTextField = new javax.swing.JTextField();
-        addUserDialogButton = new javax.swing.JButton();
-        statusAddUserDialogLabel = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        cancelAddUserDialogButton = new javax.swing.JButton();
+        jTabbedPane1 = new javax.swing.JTabbedPane();
+        jPanel6 = new javax.swing.JPanel();
+        jLabel5 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         addUserDialogTextArea = new javax.swing.JTextArea();
-        jLabel5 = new javax.swing.JLabel();
+        cancelAddUserDialogButton = new javax.swing.JButton();
+        statusAddUserDialogLabel = new javax.swing.JLabel();
+        addUserDialogButton = new javax.swing.JButton();
+        jPanel5 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        addUserDialogTextField = new javax.swing.JTextField();
         emojiDialog = new javax.swing.JDialog();
         jScrollPane2 = new javax.swing.JScrollPane();
         jPanel3 = new javax.swing.JPanel();
         jFileChooser = new javax.swing.JFileChooser();
+        createGroupDialog = new javax.swing.JDialog();
+        jLabel6 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        createGroupButtonDialog = new javax.swing.JButton();
+        cancelCreateGroupButtonDialog = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
+        renameViewGroupDialog = new javax.swing.JDialog();
+        jPanel9 = new javax.swing.JPanel();
+        jLabel8 = new javax.swing.JLabel();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        jTabbedPane3 = new javax.swing.JTabbedPane();
+        jPanel8 = new javax.swing.JPanel();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        jPanel7 = new javax.swing.JPanel();
+        jTextField6 = new javax.swing.JTextField();
+        jLabel13 = new javax.swing.JLabel();
+        cancelCreateGroupButtonDialog2 = new javax.swing.JButton();
+        createGroupButtonDialog2 = new javax.swing.JButton();
         jSplitPane1 = new javax.swing.JSplitPane();
         jScrollPane1 = new javax.swing.JScrollPane();
         contactList = new javax.swing.JList<>();
@@ -109,16 +130,9 @@ public class ScreenRoot extends javax.swing.JFrame {
 
         jLabel3.setText("Username");
 
-        RemoveUserDialogTextField.addActionListener(new java.awt.event.ActionListener() {
+        removeUserDialogTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                RemoveUserDialogTextFieldActionPerformed(evt);
-            }
-        });
-
-        RemoveUserDialogButton.setText("Remove");
-        RemoveUserDialogButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                RemoveUserDialogButtonActionPerformed(evt);
+                removeUserDialogTextFieldActionPerformed(evt);
             }
         });
 
@@ -126,78 +140,71 @@ public class ScreenRoot extends javax.swing.JFrame {
 
         jLabel4.setText("Remove User");
 
-        cancelRemoveUserDialogButton.setText("Cancel");
-        cancelRemoveUserDialogButton.addActionListener(new java.awt.event.ActionListener() {
+        removeUserButton.setText("Remove");
+        removeUserButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cancelRemoveUserDialogButtonActionPerformed(evt);
+                removeUserButtonActionPerformed(evt);
+            }
+        });
+
+        cancelRemoveButtonUser.setText("Cancel");
+        cancelRemoveButtonUser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelRemoveButtonUserActionPerformed(evt);
             }
         });
 
         javax.swing.GroupLayout removeUserDialogLayout = new javax.swing.GroupLayout(removeUserDialog.getContentPane());
         removeUserDialog.getContentPane().setLayout(removeUserDialogLayout);
         removeUserDialogLayout.setHorizontalGroup(
-                removeUserDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(removeUserDialogLayout.createSequentialGroup()
-                                .addGroup(removeUserDialogLayout
-                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(removeUserDialogLayout.createSequentialGroup()
-                                                .addGap(71, 71, 71)
-                                                .addGroup(removeUserDialogLayout
-                                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                                        .addComponent(statusRemoveUserDialogLabel1,
-                                                                javax.swing.GroupLayout.PREFERRED_SIZE, 272,
-                                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addGroup(removeUserDialogLayout.createSequentialGroup()
-                                                                .addGroup(removeUserDialogLayout.createParallelGroup(
-                                                                        javax.swing.GroupLayout.Alignment.TRAILING)
-                                                                        .addGroup(removeUserDialogLayout
-                                                                                .createSequentialGroup()
-                                                                                .addComponent(
-                                                                                        cancelRemoveUserDialogButton)
-                                                                                .addPreferredGap(
-                                                                                        javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                                                .addComponent(RemoveUserDialogButton))
-                                                                        .addGroup(removeUserDialogLayout
-                                                                                .createSequentialGroup()
-                                                                                .addComponent(jLabel3)
-                                                                                .addPreferredGap(
-                                                                                        javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                                                .addComponent(RemoveUserDialogTextField,
-                                                                                        javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                        200,
-                                                                                        javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                                                .addGap(12, 12, 12))))
-                                        .addGroup(removeUserDialogLayout.createSequentialGroup()
-                                                .addContainerGap()
-                                                .addComponent(jLabel4)))
-                                .addContainerGap(45, Short.MAX_VALUE)));
+            removeUserDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(removeUserDialogLayout.createSequentialGroup()
+                .addGroup(removeUserDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(removeUserDialogLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel4))
+                    .addGroup(removeUserDialogLayout.createSequentialGroup()
+                        .addGap(83, 83, 83)
+                        .addGroup(removeUserDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(removeUserDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(statusRemoveUserDialogLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(removeUserDialogLayout.createSequentialGroup()
+                                    .addComponent(cancelRemoveButtonUser)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(removeUserButton)
+                                    .addGap(15, 15, 15)))
+                            .addComponent(jLabel3)
+                            .addComponent(removeUserDialogTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(45, Short.MAX_VALUE))
+        );
         removeUserDialogLayout.setVerticalGroup(
-                removeUserDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(removeUserDialogLayout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jLabel4)
-                                .addGap(90, 90, 90)
-                                .addGroup(removeUserDialogLayout
-                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(jLabel3)
-                                        .addComponent(RemoveUserDialogTextField, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addGroup(removeUserDialogLayout
-                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(RemoveUserDialogButton)
-                                        .addComponent(cancelRemoveUserDialogButton))
-                                .addGap(35, 35, 35)
-                                .addComponent(statusRemoveUserDialogLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30,
-                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(52, Short.MAX_VALUE)));
+            removeUserDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(removeUserDialogLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel4)
+                .addGap(65, 65, 65)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(removeUserDialogTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(removeUserDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(removeUserButton)
+                    .addComponent(cancelRemoveButtonUser))
+                .addGap(35, 35, 35)
+                .addComponent(statusRemoveUserDialogLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(52, Short.MAX_VALUE))
+        );
 
-        jLabel1.setText("Username");
+        jLabel5.setText("Message");
 
-        addUserDialogTextField.addActionListener(new java.awt.event.ActionListener() {
+        addUserDialogTextArea.setColumns(20);
+        addUserDialogTextArea.setRows(5);
+        jScrollPane3.setViewportView(addUserDialogTextArea);
+
+        cancelAddUserDialogButton.setText("Cancel");
+        cancelAddUserDialogButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addUserDialogTextFieldActionPerformed(evt);
+                cancelAddUserDialogButtonActionPerformed(evt);
             }
         });
 
@@ -208,84 +215,56 @@ public class ScreenRoot extends javax.swing.JFrame {
             }
         });
 
-        statusAddUserDialogLabel.setEnabled(false);
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                .addContainerGap(94, Short.MAX_VALUE)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel5)
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(addUserDialogButton)
+                            .addComponent(cancelAddUserDialogButton)))
+                    .addComponent(statusAddUserDialogLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(77, 77, 77))
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addGap(46, 46, 46)
+                .addComponent(jLabel5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                        .addComponent(addUserDialogButton, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(cancelAddUserDialogButton)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(statusAddUserDialogLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(64, Short.MAX_VALUE))
+        );
 
-        jLabel2.setText("Add User");
+        jTabbedPane1.addTab("Add", jPanel6);
 
-        cancelAddUserDialogButton.setText("Cancel");
-        cancelAddUserDialogButton.addActionListener(new java.awt.event.ActionListener() {
+        addUserDialog.getContentPane().add(jTabbedPane1, java.awt.BorderLayout.CENTER);
+
+        jLabel1.setText("Username");
+        jPanel5.add(jLabel1);
+
+        addUserDialogTextField.setColumns(20);
+        addUserDialogTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cancelAddUserDialogButtonActionPerformed(evt);
+                addUserDialogTextFieldActionPerformed(evt);
             }
         });
+        jPanel5.add(addUserDialogTextField);
 
-        addUserDialogTextArea.setColumns(20);
-        addUserDialogTextArea.setRows(5);
-        jScrollPane3.setViewportView(addUserDialogTextArea);
-
-        jLabel5.setText("Message");
-
-        javax.swing.GroupLayout addUserDialogLayout = new javax.swing.GroupLayout(addUserDialog.getContentPane());
-        addUserDialog.getContentPane().setLayout(addUserDialogLayout);
-        addUserDialogLayout.setHorizontalGroup(
-                addUserDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(addUserDialogLayout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jLabel2)
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, addUserDialogLayout
-                                .createSequentialGroup()
-                                .addGap(0, 78, Short.MAX_VALUE)
-                                .addGroup(addUserDialogLayout
-                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(statusAddUserDialogLabel, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                272, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGroup(addUserDialogLayout.createSequentialGroup()
-                                                .addComponent(cancelAddUserDialogButton)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(addUserDialogButton))
-                                        .addGroup(addUserDialogLayout.createSequentialGroup()
-                                                .addGroup(addUserDialogLayout
-                                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                                        .addComponent(jLabel1)
-                                                        .addComponent(jLabel5))
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addGroup(addUserDialogLayout
-                                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING,
-                                                                false)
-                                                        .addComponent(jScrollPane3,
-                                                                javax.swing.GroupLayout.DEFAULT_SIZE, 257,
-                                                                Short.MAX_VALUE)
-                                                        .addComponent(addUserDialogTextField))))
-                                .addGap(68, 68, 68)));
-        addUserDialogLayout.setVerticalGroup(
-                addUserDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(addUserDialogLayout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jLabel2)
-                                .addGap(33, 33, 33)
-                                .addGroup(addUserDialogLayout
-                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(jLabel1)
-                                        .addComponent(addUserDialogTextField, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addGroup(addUserDialogLayout
-                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jLabel5))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(addUserDialogLayout
-                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(addUserDialogButton)
-                                        .addComponent(cancelAddUserDialogButton))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(statusAddUserDialogLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 30,
-                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(40, Short.MAX_VALUE)));
+        addUserDialog.getContentPane().add(jPanel5, java.awt.BorderLayout.PAGE_START);
 
         jScrollPane2.setPreferredSize(new java.awt.Dimension(300, 300));
 
@@ -294,6 +273,132 @@ public class ScreenRoot extends javax.swing.JFrame {
         jScrollPane2.setViewportView(jPanel3);
 
         emojiDialog.getContentPane().add(jScrollPane2, java.awt.BorderLayout.CENTER);
+
+        jLabel6.setText("Create Group");
+
+        createGroupButtonDialog.setText("Create");
+
+        cancelCreateGroupButtonDialog.setText("Cancel");
+
+        jLabel7.setText("Group Name");
+
+        javax.swing.GroupLayout createGroupDialogLayout = new javax.swing.GroupLayout(createGroupDialog.getContentPane());
+        createGroupDialog.getContentPane().setLayout(createGroupDialogLayout);
+        createGroupDialogLayout.setHorizontalGroup(
+            createGroupDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(createGroupDialogLayout.createSequentialGroup()
+                .addGroup(createGroupDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(createGroupDialogLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(cancelCreateGroupButtonDialog)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(createGroupButtonDialog))
+                    .addGroup(createGroupDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(createGroupDialogLayout.createSequentialGroup()
+                            .addContainerGap()
+                            .addComponent(jLabel6))
+                        .addGroup(createGroupDialogLayout.createSequentialGroup()
+                            .addGap(60, 60, 60)
+                            .addGroup(createGroupDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel7)
+                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(59, Short.MAX_VALUE))
+        );
+        createGroupDialogLayout.setVerticalGroup(
+            createGroupDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(createGroupDialogLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel6)
+                .addGap(63, 63, 63)
+                .addComponent(jLabel7)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(createGroupDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(createGroupButtonDialog)
+                    .addComponent(cancelCreateGroupButtonDialog))
+                .addContainerGap(125, Short.MAX_VALUE))
+        );
+
+        jLabel8.setText("Group Name");
+        jPanel9.add(jLabel8);
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jPanel9.add(jComboBox1);
+
+        renameViewGroupDialog.getContentPane().add(jPanel9, java.awt.BorderLayout.PAGE_START);
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane5.setViewportView(jTable1);
+
+        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
+        jPanel8.setLayout(jPanel8Layout);
+        jPanel8Layout.setHorizontalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 388, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel8Layout.setVerticalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jTabbedPane3.addTab("View", jPanel8);
+
+        jLabel13.setText("New Name");
+
+        cancelCreateGroupButtonDialog2.setText("Cancel");
+
+        createGroupButtonDialog2.setText("Rename");
+
+        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
+        jPanel7.setLayout(jPanel7Layout);
+        jPanel7Layout.setHorizontalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addGap(58, 58, 58)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addComponent(cancelCreateGroupButtonDialog2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(createGroupButtonDialog2))
+                    .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel13)))
+                .addContainerGap(61, Short.MAX_VALUE))
+        );
+        jPanel7Layout.setVerticalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addGap(37, 37, 37)
+                .addComponent(jLabel13)
+                .addGap(5, 5, 5)
+                .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(createGroupButtonDialog2)
+                    .addComponent(cancelCreateGroupButtonDialog2))
+                .addContainerGap(109, Short.MAX_VALUE))
+        );
+
+        jTabbedPane3.addTab("Rename", jPanel7);
+
+        renameViewGroupDialog.getContentPane().add(jTabbedPane3, java.awt.BorderLayout.CENTER);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -353,37 +458,31 @@ public class ScreenRoot extends javax.swing.JFrame {
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
-                jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(41, 41, 41)
-                                .addComponent(sendFileButton)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(emojiButton)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 435,
-                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48,
-                                        Short.MAX_VALUE)
-                                .addComponent(sendButton)
-                                .addGap(69, 69, 69)));
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(41, 41, 41)
+                .addComponent(sendFileButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(emojiButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 435, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
+                .addComponent(sendButton)
+                .addGap(69, 69, 69))
+        );
         jPanel2Layout.setVerticalGroup(
-                jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                .addGap(32, 32, 32)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(sendFileButton, javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.LEADING,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout
-                                                .createSequentialGroup()
-                                                .addComponent(emojiButton, javax.swing.GroupLayout.PREFERRED_SIZE, 42,
-                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(0, 0, Short.MAX_VALUE))
-                                        .addComponent(sendButton, javax.swing.GroupLayout.Alignment.LEADING,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(26, 26, 26)));
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addGap(32, 32, 32)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(sendFileButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                        .addComponent(emojiButton, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(sendButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(26, 26, 26))
+        );
 
         jPanel1.add(jPanel2, java.awt.BorderLayout.SOUTH);
 
@@ -418,6 +517,25 @@ public class ScreenRoot extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void removeUserButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeUserButtonActionPerformed
+        String s = removeUserDialogTextField.getText();
+        if (s.equals(currentUser.getName())) {
+            s = currentUser.getName() + " (you)";
+        }
+        ArrayList<MessageComponent> c = chat.remove(s);
+        if (c == null) {
+            System.err.println("no contact found to remove");
+        }
+
+        DefaultListModel<String> list = (DefaultListModel<String>) contactList.getModel();
+        list.removeElement(s);
+        contactList.setSelectedIndex(0);
+    }//GEN-LAST:event_removeUserButtonActionPerformed
+
+    private void cancelRemoveButtonUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelRemoveButtonUserActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cancelRemoveButtonUserActionPerformed
 
     private void emojiButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_emojiButtonActionPerformed
         emojiDialog.pack();
@@ -472,7 +590,7 @@ public class ScreenRoot extends javax.swing.JFrame {
         // TODO add your handling code here:
     }// GEN-LAST:event_cancelAddUserDialogButtonActionPerformed
 
-    private void RemoveUserDialogTextFieldActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_RemoveUserDialogTextFieldActionPerformed
+    private void removeUserDialogTextFieldActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_RemoveUserDialogTextFieldActionPerformed
         // TODO add your handling code here:
     }// GEN-LAST:event_RemoveUserDialogTextFieldActionPerformed
 
@@ -633,7 +751,7 @@ public class ScreenRoot extends javax.swing.JFrame {
                         System.out.println("[STATUS] Message was " + (String) receiver.getData(0));
                     }
                     break;
-                case GET_MESSAGES:
+                case GET_USER_MESSAGES:
                     if (receiver.getResponse() == Response.MESSAGE) {
                         handleNewMessages(receiver);
                     }
@@ -805,7 +923,7 @@ public class ScreenRoot extends javax.swing.JFrame {
                 try {
                     if (isAuthorized) {
                         contactList.setSelectedIndex(0);
-                        Sender<Integer> sender = new Sender<>(currentUser.getName(), null, Action.GET_MESSAGES);
+                        Sender<Integer> sender = new Sender<>(currentUser.getName(), null, Action.GET_USER_MESSAGES);
                         sender.appendData(contacts.size());
                         ObjectOutputStream out = new ObjectOutputStream(socket.getOutputStream());
                         out.writeObject(sender);
@@ -868,24 +986,31 @@ public class ScreenRoot extends javax.swing.JFrame {
     private HashMap<String, ArrayList<MessageComponent>> chat;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton RemoveUserDialogButton;
-    private javax.swing.JTextField RemoveUserDialogTextField;
     private javax.swing.JDialog addUserDialog;
     private javax.swing.JButton addUserDialogButton;
     private javax.swing.JTextArea addUserDialogTextArea;
     private javax.swing.JTextField addUserDialogTextField;
     private javax.swing.JPanel boxPanel;
     private javax.swing.JButton cancelAddUserDialogButton;
-    private javax.swing.JButton cancelRemoveUserDialogButton;
+    private javax.swing.JButton cancelCreateGroupButtonDialog;
+    private javax.swing.JButton cancelCreateGroupButtonDialog2;
+    private javax.swing.JButton cancelRemoveButtonUser;
     private javax.swing.JList<String> contactList;
+    private javax.swing.JButton createGroupButtonDialog;
+    private javax.swing.JButton createGroupButtonDialog2;
+    private javax.swing.JDialog createGroupDialog;
     private javax.swing.JButton emojiButton;
     private javax.swing.JDialog emojiDialog;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JFileChooser jFileChooser;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
@@ -894,14 +1019,28 @@ public class ScreenRoot extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
+    private javax.swing.JPanel jPanel8;
+    private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JSplitPane jSplitPane1;
+    private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTabbedPane jTabbedPane3;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField6;
     private javax.swing.JTextArea messageTextArea;
+    private javax.swing.JButton removeUserButton;
     private javax.swing.JDialog removeUserDialog;
+    private javax.swing.JTextField removeUserDialogTextField;
+    private javax.swing.JDialog renameViewGroupDialog;
     private javax.swing.JButton sendButton;
     private javax.swing.JButton sendFileButton;
     private javax.swing.JLabel statusAddUserDialogLabel;

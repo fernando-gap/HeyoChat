@@ -150,16 +150,72 @@ class Server {
             case SEND_FILE2USER:
                 receiver = sendFile2User(client);
                 break;
-            case GET_MESSAGES:
-                receiver = getNewMessages(client);
+            case GET_USER_MESSAGES:
+                receiver = getUserMessages(client);
                 break;
-            // case SEND_USER2GROUP:
-            // receiver = sendMessage2Group(client);
+            case SEND_USER2GROUP:
+                receiver = sendMessage2Group(client);
+                break;
+            case CREATE_GROUP:
+                receiver = createGroup(client);
+                break;
+            case LEAVE_GROUP:
+                receiver = leaveGroup(client);
+                break;
+            case DELETE_GROUP:
+                receiver = deleteGroup(client);
+                break;
+            case ADD_USER2GROUP:
+                receiver = addUserGroup(client);
+                break;
+            case REMOVE_USER_FROM_GROUP:
+                receiver = removeUserFromGroup(client);
+                break;
+            case RENAME_GROUP:
+                receiver = removeUserFromGroup(client);
+                break;
+            case GET_GROUP_MESSAGES:
+                receiver = getGroupMessages(client);
             case NONE:
                 break;
         }
 
         return receiver;
+    }
+
+    private Receiver<?> getGroupMessages(Sender<?> client) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getGroupMessages'");
+    }
+
+    private Receiver<?> removeUserFromGroup(Sender<?> client) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'removeUserFromGroup'");
+    }
+
+    private Receiver<?> addUserGroup(Sender<?> client) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'addUserGroup'");
+    }
+
+    private Receiver<?> deleteGroup(Sender<?> client) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'deleteGroup'");
+    }
+
+    private Receiver<?> leaveGroup(Sender<?> client) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'leaveGroup'");
+    }
+
+    private Receiver<?> createGroup(Sender<?> client) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'createGroup'");
+    }
+
+    private Receiver<?> sendMessage2Group(Sender<?> client) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'sendMessage2Group'");
     }
 
     private Receiver<?> sendFile2User(Sender<?> sender) {
@@ -198,8 +254,8 @@ class Server {
         return response;
     }
 
-    private Receiver<Message> getNewMessages(Sender<?> client) {
-        Receiver<Message> receiver = new Receiver<>(client.getName(), Action.GET_MESSAGES, Response.NONE);
+    private Receiver<Message> getUserMessages(Sender<?> client) {
+        Receiver<Message> receiver = new Receiver<>(client.getName(), Action.GET_USER_MESSAGES, Response.NONE);
 
         try {
             database.getNewMessages(client.getName(), receiver.getArrayList());

@@ -47,7 +47,6 @@ public abstract class Client implements Serializable {
             case SEND_USER2USER:
             case SEND_USER2GROUP:
             case SEND_FILE2USER: // the message is the file name + size
-            case GET_MESSAGES:
             case GET_USER_MESSAGES:
             case GET_GROUP_MESSAGES:
             case GET_ALL_USER_MESSAGES:
@@ -59,6 +58,11 @@ public abstract class Client implements Serializable {
 
             case CREATE_ACCOUNT:
             case SIGN_IN:
+            case CREATE_GROUP:
+            case LEAVE_GROUP:
+            case DELETE_GROUP:
+            case ADD_USER2GROUP:
+            case RENAME_GROUP:
                 return Response.STATUS;
 
             case NONE:

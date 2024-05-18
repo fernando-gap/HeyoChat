@@ -14,6 +14,7 @@ public interface Database {
     void createGroup(String name);
     void createUser(String name, String password) throws SQLException;
 
+    void deleteGroup(String name) throws SQLException;
 
     User getUser(String name) throws SQLException;
     Group getGroup(String name);
