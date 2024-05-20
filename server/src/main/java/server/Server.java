@@ -332,7 +332,6 @@ class Server {
 
             } else {
                 /* message delivered */
-                System.out.println("error");
                 senderResponse.setCustomResponse(Response.STATUS);
                 senderResponse.appendData("delivered");
             }

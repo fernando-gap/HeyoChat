@@ -53,6 +53,7 @@ public class ScreenAuthentication extends javax.swing.JPanel {
         LabelSignUpRepeatPassword = new javax.swing.JLabel();
         errorLabel = new javax.swing.JLabel();
 
+        setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         setPreferredSize(new java.awt.Dimension(800, 590));
         setLayout(new java.awt.BorderLayout());
 

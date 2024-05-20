@@ -49,8 +49,6 @@ public abstract class Client implements Serializable {
             case SEND_FILE2USER: // the message is the file name + size
             case GET_USER_MESSAGES:
             case GET_GROUP_MESSAGES:
-            case GET_ALL_USER_MESSAGES:
-            case GET_ALL_GROUP_MESSAGES:
                 return Response.MESSAGE;
             
             case ADD_USER_CONTACT:
